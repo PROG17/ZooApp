@@ -1,6 +1,6 @@
 ﻿namespace ZooApp
 {
-    partial class Form1
+    partial class Zooform
     {
         /// <summary>
         /// Required designer variable.
