@@ -54,7 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLayer\Zoo.cs" />
+    <Compile Include="DAL\DataAccess.cs" />
+    <Compile Include="Datacontext\Animal.cs" />
+    <Compile Include="Datacontext\CountryOfOrigin.cs" />
+    <Compile Include="Datacontext\Species.cs" />
+    <Compile Include="Datacontext\Habitat.cs" />
     <Compile Include="Datacontext\ZooContext.cs" />
+    <Compile Include="Datacontext\ZooDBInitializer.cs" />
+    <Compile Include="Models\AnimalModel.cs" />
     <Compile Include="PresentationLayer\Zooform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +71,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="PresentationLayer\Zooform.resx">
+      <DependentUpon>Zooform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -86,9 +97,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAL\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

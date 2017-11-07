@@ -16,6 +16,11 @@ namespace ZooApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //using (var ctx = new ZooContext())
+            //{
+                
+            //    ctx.SaveChanges();
+            //}
             Application.Run(new Zooform());
         }
     }
