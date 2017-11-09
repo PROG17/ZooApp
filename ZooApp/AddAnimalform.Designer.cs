@@ -42,7 +42,12 @@
             this.NewWeightTextbox = new System.Windows.Forms.TextBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.ParentsListBox = new System.Windows.Forms.CheckedListBox();
+            this.ParentsdataGridView = new System.Windows.Forms.DataGridView();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.Parent1TextBox = new System.Windows.Forms.TextBox();
+            this.Parent2TextBox = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.ParentsdataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -165,7 +170,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(514, 31);
+            this.SaveButton.Location = new System.Drawing.Point(796, 12);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(133, 70);
             this.SaveButton.TabIndex = 12;
@@ -176,26 +181,63 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(486, 155);
+            this.label7.Location = new System.Drawing.Point(561, 121);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 20);
             this.label7.TabIndex = 13;
             this.label7.Text = "Föräldrar";
             // 
-            // ParentsListBox
+            // ParentsdataGridView
             // 
-            this.ParentsListBox.FormattingEnabled = true;
-            this.ParentsListBox.Location = new System.Drawing.Point(582, 155);
-            this.ParentsListBox.Name = "ParentsListBox";
-            this.ParentsListBox.Size = new System.Drawing.Size(324, 172);
-            this.ParentsListBox.TabIndex = 15;
+            this.ParentsdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ParentsdataGridView.Location = new System.Drawing.Point(565, 155);
+            this.ParentsdataGridView.Name = "ParentsdataGridView";
+            this.ParentsdataGridView.RowTemplate.Height = 28;
+            this.ParentsdataGridView.Size = new System.Drawing.Size(343, 190);
+            this.ParentsdataGridView.TabIndex = 17;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(380, 175);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(104, 20);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "FirstParentID";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(380, 259);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(128, 20);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "SecondParentID";
+            // 
+            // Parent1TextBox
+            // 
+            this.Parent1TextBox.Location = new System.Drawing.Point(384, 210);
+            this.Parent1TextBox.Name = "Parent1TextBox";
+            this.Parent1TextBox.Size = new System.Drawing.Size(100, 26);
+            this.Parent1TextBox.TabIndex = 21;
+            // 
+            // Parent2TextBox
+            // 
+            this.Parent2TextBox.Location = new System.Drawing.Point(384, 296);
+            this.Parent2TextBox.Name = "Parent2TextBox";
+            this.Parent2TextBox.Size = new System.Drawing.Size(100, 26);
+            this.Parent2TextBox.TabIndex = 22;
             // 
             // AddAnimalform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 378);
-            this.Controls.Add(this.ParentsListBox);
+            this.Controls.Add(this.Parent2TextBox);
+            this.Controls.Add(this.Parent1TextBox);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.ParentsdataGridView);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.NewWeightTextbox);
@@ -213,6 +255,7 @@
             this.Name = "AddAnimalform";
             this.Text = "Lägg till djur";
             this.Load += new System.EventHandler(this.AddAnimalform_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ParentsdataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,6 +277,10 @@
         private System.Windows.Forms.TextBox NewWeightTextbox;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.CheckedListBox ParentsListBox;
+        private System.Windows.Forms.DataGridView ParentsdataGridView;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox Parent1TextBox;
+        private System.Windows.Forms.TextBox Parent2TextBox;
     }
 }

@@ -14,9 +14,7 @@ namespace ZooApp
         public AddAnimalform(Zoo eskilstunaZoo)
         {
             InitializeComponent();
-            ParentsListBox.DataSource = eskilstunaZoo.GetAnimals("", "", "");
-            ParentsListBox.ValueMember = "AnimalId";
-            ParentsListBox.DisplayMember = "Name";
+            ParentsdataGridView.DataSource = eskilstunaZoo.GetAnimals("", "", "");
         }
 
         private void AddAnimalform_Load(object sender, EventArgs e)
@@ -26,8 +24,9 @@ namespace ZooApp
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            //if (ParentsListBox. )
-            //    ParentsListBox.SelectedIndex = -1;
+
+
+
             NewAnimal newAnimal = new NewAnimal();
             newAnimal.CountryOfOrigin = NewCountryBox.GetItemText(NewCountryBox.SelectedItem);
             newAnimal.Eats = NewEatsComboBox.GetItemText(NewEatsComboBox.SelectedItem);
@@ -35,10 +34,9 @@ namespace ZooApp
             newAnimal.Name = NewNameBox.Text;
             newAnimal.Weight = int.Parse(NewWeightTextbox.Text);
             newAnimal.Species = NewSpeciesComboBox.GetItemText(NewSpeciesComboBox.SelectedItem);
-            //newAnimal.Parent1Id = ParentsListBox.;
-            //newAnimal.Parent1Id = ParentsListBox.sel
-            newAnimal.Parent1Id = 1; //ParentsListBox.SelectedIndices[0];
-            newAnimal.Parent2Id = 2;
+            
+            newAnimal.Parent1Id = int.Parse(Parent1TextBox.Text);
+            newAnimal.Parent2Id = int.Parse(Parent2TextBox.Text);
 
             Zoo nyttZoo = new Zoo();
             nyttZoo.AddNewAnimal(newAnimal);

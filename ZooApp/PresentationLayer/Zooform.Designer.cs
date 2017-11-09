@@ -88,7 +88,7 @@
             this.SpeciesComboBox.FormattingEnabled = true;
             this.SpeciesComboBox.Items.AddRange(new object[] {
             "Lejon",
-            "Elefant",
+            "Apa",
             "Orm",
             "Fågel",
             "Gris"});
