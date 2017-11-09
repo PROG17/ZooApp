@@ -15,6 +15,11 @@ namespace ZooApp.Datacontext
             CountryOfOrigin sverige = new CountryOfOrigin() { Name = "Sverige" };
 
             CountryOfOrigin uganda = new CountryOfOrigin() { Name = "Uganda" };
+
+            CountryOfOrigin thailand = new CountryOfOrigin() { Name = "Thailand" };
+
+            CountryOfOrigin australien = new CountryOfOrigin() { Name = "Australien" };
+
             
             Habitat mark = new Habitat() {Name = "Mark"};
 
@@ -26,7 +31,13 @@ namespace ZooApp.Datacontext
 
             Species apa = new Species() { Name = "Apa" };
 
+            Species lejon = new Species() { Name = "Lejon" };
 
+            Species fågel = new Species() { Name = "Fågel" };
+
+            Species orm = new Species() { Name = "Orm" };
+
+            
             Animal grisbarn = new Animal()
             {
                 Name = "Greger",
@@ -98,9 +109,16 @@ namespace ZooApp.Datacontext
             
             ctx.Specieses.Add(gris);
             ctx.Specieses.Add(apa);
+            ctx.Specieses.Add(lejon);
+            ctx.Specieses.Add(orm);
+            ctx.Specieses.Add(fågel);
 
             ctx.CountryOfOrigins.Add(sverige);
             ctx.CountryOfOrigins.Add(uganda);
+            ctx.CountryOfOrigins.Add(thailand);
+            ctx.CountryOfOrigins.Add(australien);
+            
+
 
             base.Seed(ctx);
         }

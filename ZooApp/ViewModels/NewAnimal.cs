@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace ZooApp.ViewModels
 {
-    public class AnimalModel
+    public class NewAnimal
     {
-        public int AnimalId { get; set; }
+        
         public string Name { get; set; }
         public string Eats { get; set; }
         public string CountryOfOrigin { get; set; }
-        public int Weight { get; set; }
+        public string Habitat { get; set; }
         public string Species { get; set; }
-        //public bool HasVetAppointment { get; set; }
-        
+        public int Weight { get; set; }
+        public int Parent1Id { get; set; }
+        public int Parent2Id { get; set; }
     }
 }

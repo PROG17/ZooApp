@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity.Validation;
@@ -7,16 +8,17 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ZooApp.Models;
+using ZooApp.Datacontext;
+using ZooApp.ViewModels;
 
 namespace ZooApp.DAL
 {
     class DataAccess
     {
 
-        public BindingList<Models.AnimalModel> ReturnFilteredAnimals(string habitat, string species, string eats)
+        public BindingList<AnimalModel> GetAnimalsFromDB(string habitat, string species, string eats)
         {
-            BindingList<Models.AnimalModel> filteredAnimals = new BindingList<AnimalModel>();
+            BindingList<AnimalModel> filteredAnimals = new BindingList<AnimalModel>();
 
             using (var db = new ZooContext())
             {
@@ -61,46 +63,10 @@ namespace ZooApp.DAL
                 db.Animals.Remove(animalToBeDeleted);
 
                 db.SaveChanges();
-                //try
-                //{
-                //    var temp = db.Animals.First(x => x.AnimalId == selectedanimal);
-
-                //    //var parent = db.Animals.First(x => x.AnimalId == selectedanimal).Parents;
-
-                //    //temp.Parents = parent;
-                //    //var species = temp.Species;
-                //    //temp.Species = species;
-
-                //    //db.Animals.Attach(temp);
-                //    db.Animals.Remove(temp);
-                    
-                //    db.SaveChanges();
-                //}
-                //catch (DbEntityValidationException dbEx)
-                //{
-                //    foreach (var validationErrors in dbEx.EntityValidationErrors)
-                //    {
-                //        foreach (var validationError in validationErrors.ValidationErrors)
-                //        {
-                //            var error = validationError.ErrorMessage;
-                //            var error2 = validationError.PropertyName;
-                //            //MessageBox.Show(validationError.PropertyName + validationError.ErrorMessage);
-                //        }
-                //    }
-                //}
+                
                 
 
-                //var query = from a in db.Animals
-                //            where (string.IsNullOrEmpty(habitat) || a.Habitat.Name == habitat) &&
-                //                  (string.IsNullOrEmpty(species) || a.Species.Name == species) &&
-                //                  (string.IsNullOrEmpty(eats) || a.Eats == eats)
-                //            select a;
-
-
-
-
-
-
+                
             }
             // InsertAnimal
             // UpdateAnimal
@@ -111,9 +77,37 @@ namespace ZooApp.DAL
             //GetProductByProductID(productID), which will return information about a particular product
         }
 
-        public void AddAnimal()
+        public void AddAnimal(NewAnimal newAnimal)
         {
-            
+            using (var db = new ZooContext())
+            {
+                var country = db.CountryOfOrigins.First(x => x.Name == newAnimal.CountryOfOrigin);
+                var habitat = db.Habitats.First(x => x.Name == newAnimal.Habitat);
+                var species = db.Specieses.First(x => x.Name == newAnimal.Species);
+                var firstparent = db.Animals.First(x => x.AnimalId == newAnimal.Parent1Id);
+                var secondparent = db.Animals.First(x => x.AnimalId == newAnimal.Parent2Id);
+
+                Animal newAnimalinstance = new Animal()
+                {
+                    Name = newAnimal.Name,
+                    Eats = newAnimal.Eats,
+                    Weight = newAnimal.Weight,
+                    CountryOfOrigin = country,
+                    Habitat = habitat,
+                    Species = species,
+                };
+
+                newAnimalinstance.Parents.Add(firstparent);
+                newAnimalinstance.Parents.Add(secondparent);
+                country.Animals.Add(newAnimalinstance);
+                habitat.Animals.Add(newAnimalinstance);
+                species.Animals.Add(newAnimalinstance);
+
+                db.Animals.Add(newAnimalinstance);
+
+                db.SaveChanges();
+                
+            }
         }
     }
 }

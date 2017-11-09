@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ZooApp.Models;
+using ZooApp.ViewModels;
 
 namespace ZooApp
 {
@@ -39,7 +39,7 @@ namespace ZooApp
             if (ZooGridViewSök.SelectedRows.Count == 1)
             {
                 var selectedAnimal = ZooGridViewSök[0, ZooGridViewSök.CurrentCell.RowIndex].Value;
-                //label4.Text = (int)selectedAnimal;
+                
                 EskilstunaZoo.DeleteSelectedAnimal((int)selectedAnimal);
             }
             
@@ -47,6 +47,9 @@ namespace ZooApp
 
         private void AddAnimalButton_Click(object sender, EventArgs e)
         {
+            
+            var addNewAnimalForm = new AddAnimalform(EskilstunaZoo);
+            addNewAnimalForm.ShowDialog();
 
         }
     }

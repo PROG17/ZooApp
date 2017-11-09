@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\NewAnimal.cs" />
     <EmbeddedResource Include="AddAnimalform.resx">
       <DependentUpon>AddAnimalform.cs</DependentUpon>
     </EmbeddedResource>

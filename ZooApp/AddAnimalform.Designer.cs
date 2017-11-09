@@ -34,13 +34,15 @@
             this.NewEatsComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.NewSpeciesBox = new System.Windows.Forms.ComboBox();
+            this.NewCountryBox = new System.Windows.Forms.ComboBox();
             this.NewSpeciesComboBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.NewHabitatComboBox = new System.Windows.Forms.ComboBox();
             this.NewWeightTextbox = new System.Windows.Forms.TextBox();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.ParentsListBox = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -97,25 +99,25 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "Art";
             // 
-            // NewSpeciesBox
+            // NewCountryBox
             // 
-            this.NewSpeciesBox.FormattingEnabled = true;
-            this.NewSpeciesBox.Items.AddRange(new object[] {
+            this.NewCountryBox.FormattingEnabled = true;
+            this.NewCountryBox.Items.AddRange(new object[] {
             "Sverige",
             "Thailand",
             "Uganda",
             "Australien"});
-            this.NewSpeciesBox.Location = new System.Drawing.Point(177, 121);
-            this.NewSpeciesBox.Name = "NewSpeciesBox";
-            this.NewSpeciesBox.Size = new System.Drawing.Size(121, 28);
-            this.NewSpeciesBox.TabIndex = 6;
+            this.NewCountryBox.Location = new System.Drawing.Point(177, 121);
+            this.NewCountryBox.Name = "NewCountryBox";
+            this.NewCountryBox.Size = new System.Drawing.Size(121, 28);
+            this.NewCountryBox.TabIndex = 6;
             // 
             // NewSpeciesComboBox
             // 
             this.NewSpeciesComboBox.FormattingEnabled = true;
             this.NewSpeciesComboBox.Items.AddRange(new object[] {
             "Lejon",
-            "Elefant",
+            "Apa",
             "Orm",
             "Fågel",
             "Gris"});
@@ -169,19 +171,39 @@
             this.SaveButton.TabIndex = 12;
             this.SaveButton.Text = "Spara";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(486, 155);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 20);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Föräldrar";
+            // 
+            // ParentsListBox
+            // 
+            this.ParentsListBox.FormattingEnabled = true;
+            this.ParentsListBox.Location = new System.Drawing.Point(582, 155);
+            this.ParentsListBox.Name = "ParentsListBox";
+            this.ParentsListBox.Size = new System.Drawing.Size(324, 172);
+            this.ParentsListBox.TabIndex = 15;
             // 
             // AddAnimalform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 378);
+            this.Controls.Add(this.ParentsListBox);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.NewWeightTextbox);
             this.Controls.Add(this.NewHabitatComboBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.NewSpeciesComboBox);
-            this.Controls.Add(this.NewSpeciesBox);
+            this.Controls.Add(this.NewCountryBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.NewEatsComboBox);
@@ -190,6 +212,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AddAnimalform";
             this.Text = "Lägg till djur";
+            this.Load += new System.EventHandler(this.AddAnimalform_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,12 +226,14 @@
         private System.Windows.Forms.ComboBox NewEatsComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox NewSpeciesBox;
+        private System.Windows.Forms.ComboBox NewCountryBox;
         private System.Windows.Forms.ComboBox NewSpeciesComboBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox NewHabitatComboBox;
         private System.Windows.Forms.TextBox NewWeightTextbox;
         private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckedListBox ParentsListBox;
     }
 }
