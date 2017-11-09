@@ -29,9 +29,30 @@ namespace ZooApp
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //Configure domain classes using modelBuilder here
-            modelBuilder.Entity<Animal>().HasMany(x => x.Parents).WithMany()
+            modelBuilder.Entity<Animal>()
+                .HasMany(x => x.Parents)
+                .WithMany()
                 .Map(x => x.ToTable("ParentLink"));
-            
+
+            modelBuilder.Entity<Animal>()
+                .HasRequired<CountryOfOrigin>(s => s.CountryOfOrigin)
+                .WithMany(g => g.Animals)
+                .HasForeignKey<int>(s => s.CountryOfOriginId);
+
+            modelBuilder.Entity<Animal>()
+                .HasRequired<Habitat>(s => s.Habitat)
+                .WithMany(g => g.Animals)
+                .HasForeignKey<int>(s => s.HabitatId);
+
+            modelBuilder.Entity<Animal>()
+                .HasRequired<Species>(s => s.Species)
+                .WithMany(g => g.Animals)
+                .HasForeignKey<int>(s => s.SpeciesId);
+
+
+
+
+
         }
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
     }
@@ -39,6 +60,6 @@ namespace ZooApp
     //public class MyEntity
     //{
     //    public int Id { get; set; }
-    //    public string Name { get; set; }
+    //    public string Name2 { get; set; }
     //}
 }

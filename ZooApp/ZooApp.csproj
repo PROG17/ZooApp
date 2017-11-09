@@ -62,7 +62,14 @@
     <Compile Include="Datacontext\Habitat.cs" />
     <Compile Include="Datacontext\ZooContext.cs" />
     <Compile Include="Datacontext\ZooDBInitializer.cs" />
-    <Compile Include="Models\AnimalModel.cs" />
+    <Compile Include="AddAnimalform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAnimalform.Designer.cs">
+      <DependentUpon>AddAnimalform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ViewModels\AnimalModel.cs" />
     <Compile Include="PresentationLayer\Zooform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +78,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddAnimalform.resx">
+      <DependentUpon>AddAnimalform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\Zooform.resx">
       <DependentUpon>Zooform.cs</DependentUpon>
     </EmbeddedResource>

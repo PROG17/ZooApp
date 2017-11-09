@@ -5,17 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZooApp.DAL;
+using ZooApp.Models;
 
 namespace ZooApp.BusinessLayer
 {
     public class Zoo
     {
-        public BindingList<Models.AnimalModel> GetAnimals(string kategorival)
+        public BindingList<Models.AnimalModel> GetAnimals(string habitat, string species, string eats)
         {
             var dataAccess = new DataAccess();
-            if (kategorival == null || kategorival == "")
-                return dataAccess.ReturnAllAnimals();
-            return dataAccess.ReturnAllAnimals(); 
+
+            return dataAccess.ReturnFilteredAnimals(habitat, species, eats); 
         }
+        public void DeleteSelectedAnimal(int selectedanimal)
+        {
+            var dataAccess = new DataAccess();
+            dataAccess.DeleteAnimal(selectedanimal);
+            //return dataAccess.ReturnFilteredAnimals(habitat, species, eats);
+            //return null;
+        }
+
+
     }
 }

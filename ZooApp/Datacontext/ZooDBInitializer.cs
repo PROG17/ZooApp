@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ZooApp.Datacontext
 {
@@ -11,40 +12,84 @@ namespace ZooApp.Datacontext
     {
         protected override void Seed(ZooContext ctx)
         {
-            CountryOfOrigin sverige = new CountryOfOrigin(){Name = "Sverige"};
-            Habitat mark = new Habitat(){Name = "Mark"};
-            Species gris = new Species(){Name = "Gris"};
-            
-            Animal grisbarn = new Animal() {Name = "Greger", Eats = "Gräs", Weight = 100};
-            Animal grismamma = new Animal() { Name = "Berta", Eats = "Gräs", Weight = 150 };
-            Animal grispappa = new Animal() { Name = "Bertil", Eats = "Gräs", Weight = 200 };
+            CountryOfOrigin sverige = new CountryOfOrigin(){ Name = "Sverige" };
 
-            grisbarn.Parents.Add(grismamma);
-            grisbarn.Parents.Add(grispappa);
+            CountryOfOrigin uganda = new CountryOfOrigin() { Name = "Uganda" };
+            
+            Habitat mark = new Habitat(){Name = "Mark"};
+
+            Habitat vatten = new Habitat() { Name = "Vatten" };
+
+            Habitat träd = new Habitat() { Name = "Träd" };
+
+            Species gris = new Species(){Name = "Gris"};
+
+            Species apa = new Species() { Name = "Apa" };
+
+            Animal grisbarn = new Animal()
+            {
+                Name = "Greger", Eats = "Växter", Weight = 100,
+                CountryOfOrigin = new CountryOfOrigin(),
+                Habitat = new Habitat(),
+                Species = new Species()
+            };
+            
+            Animal apmamma = new Animal()
+            {
+                Name = "Berta", Eats = "Kött", Weight = 150,
+                CountryOfOrigin = new CountryOfOrigin(),
+                Habitat = new Habitat(),
+                Species = new Species()
+            };
+            Animal appappa = new Animal()
+            {
+                Name = "Bertil", Eats = "Kött", Weight = 200,
+                CountryOfOrigin = new CountryOfOrigin(),
+                Habitat = new Habitat(),
+                Species = new Species()
+            };
+            Animal apbarn = new Animal()
+            {
+                Name = "Svea", Eats = "Kött", Weight = 40,
+                CountryOfOrigin = new CountryOfOrigin(),
+                Habitat = new Habitat(),
+                Species = new Species()
+            };
+
+            apbarn.Parents.Add(apmamma);
+            apbarn.Parents.Add(appappa);
 
             mark.Animals.Add(grisbarn);
-            mark.Animals.Add(grismamma);
-            mark.Animals.Add(grispappa);
 
             gris.Animals.Add(grisbarn);
-            gris.Animals.Add(grismamma);
-            gris.Animals.Add(grispappa);
+            apa.Animals.Add(apbarn);
+            apa.Animals.Add(apmamma);
+            apa.Animals.Add(appappa);
 
             sverige.Animals.Add(grisbarn);
-            sverige.Animals.Add(grismamma);
-            sverige.Animals.Add(grispappa);
+            uganda.Animals.Add(apbarn);
+            uganda.Animals.Add(appappa);
+            uganda.Animals.Add(apmamma);
 
-            ctx.CountryOfOrigins.Add(sverige);
-            ctx.Habitats.Add(mark);
-            ctx.CountryOfOrigins.Add(sverige);
-            ctx.Specieses.Add(gris);
+            ctx.Animals.Add(grisbarn);
             
+            ctx.Animals.Add(apbarn);
+            
+            ctx.Animals.Add(apmamma);
+            
+            ctx.Animals.Add(appappa);
+            
+            ctx.Habitats.Add(mark);
+            ctx.Habitats.Add(vatten);
+            ctx.Habitats.Add(träd);
+            
+            ctx.Specieses.Add(gris);
+            ctx.Specieses.Add(apa);
 
-            ////ctx.SaveChanges();
+            ctx.CountryOfOrigins.Add(sverige);
+            ctx.CountryOfOrigins.Add(uganda);
+
             base.Seed(ctx);
-
-
-
         }
     }
 }

@@ -13,10 +13,9 @@ namespace ZooApp.Datacontext
         {
             this.Animals = new HashSet<Animal>();
         }
-        [Key]
-        [Required]
-        public int CountryId { get; set; }
-        [Required]
+        
+        public int CountryOfOriginId { get; set; }
+        
         public string Name { get; set; }
 
         public virtual ICollection<Animal> Animals { get; set; }
