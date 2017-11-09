@@ -42,17 +42,23 @@ namespace ZooApp.DAL
             return filteredAnimals;
         }
 
-        public void DeleteAnimal(int selectedanimal)
+        public void DeleteAnimal(int selectedanimalid)
         {
             using (var db = new ZooContext())
             {
-                var temp = db.Animals.First(x => x.AnimalId == selectedanimal);
-                temp.Habitat = temp.Habitat;
-                temp.CountryOfOrigin = temp.CountryOfOrigin;
-                temp.Species = temp.Species;
+                var animalToBeDeleted = db.Animals.First(x => x.AnimalId == selectedanimalid);
 
-                //db.Animals.Attach(temp);
-                db.Animals.Remove(temp);
+                var childrenOfAnimalToBeDeleted = db.Animals.Where(x => x.Parents.Any(s => s.AnimalId == selectedanimalid));
+
+                if (childrenOfAnimalToBeDeleted.Count() > 0)
+                { 
+                    foreach (var item in childrenOfAnimalToBeDeleted)
+                    {
+                        item.Parents.Remove(animalToBeDeleted);
+                    }
+                }
+                animalToBeDeleted.Parents.Clear(); 
+                db.Animals.Remove(animalToBeDeleted);
 
                 db.SaveChanges();
                 //try

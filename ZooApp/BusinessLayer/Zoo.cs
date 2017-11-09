@@ -17,12 +17,10 @@ namespace ZooApp.BusinessLayer
 
             return dataAccess.ReturnFilteredAnimals(habitat, species, eats); 
         }
-        public void DeleteSelectedAnimal(int selectedanimal)
+        public void DeleteSelectedAnimal(int selectedanimalid)
         {
             var dataAccess = new DataAccess();
-            dataAccess.DeleteAnimal(selectedanimal);
-            //return dataAccess.ReturnFilteredAnimals(habitat, species, eats);
-            //return null;
+            dataAccess.DeleteAnimal(selectedanimalid);
         }
 
 

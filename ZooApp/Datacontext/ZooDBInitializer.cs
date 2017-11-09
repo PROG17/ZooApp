@@ -12,11 +12,11 @@ namespace ZooApp.Datacontext
     {
         protected override void Seed(ZooContext ctx)
         {
-            CountryOfOrigin sverige = new CountryOfOrigin(){ Name = "Sverige" };
+            CountryOfOrigin sverige = new CountryOfOrigin() { Name = "Sverige" };
 
             CountryOfOrigin uganda = new CountryOfOrigin() { Name = "Uganda" };
             
-            Habitat mark = new Habitat(){Name = "Mark"};
+            Habitat mark = new Habitat() {Name = "Mark"};
 
             Habitat vatten = new Habitat() { Name = "Vatten" };
 
@@ -26,38 +26,51 @@ namespace ZooApp.Datacontext
 
             Species apa = new Species() { Name = "Apa" };
 
+
             Animal grisbarn = new Animal()
             {
-                Name = "Greger", Eats = "Växter", Weight = 100,
-                CountryOfOrigin = new CountryOfOrigin(),
-                Habitat = new Habitat(),
-                Species = new Species()
+                Name = "Greger",
+                Eats = "Växter",
+                Weight = 100,
+                CountryOfOrigin = sverige,
+                Habitat = mark,
+                Species = gris
             };
-            
+
+
+
             Animal apmamma = new Animal()
             {
-                Name = "Berta", Eats = "Kött", Weight = 150,
-                CountryOfOrigin = new CountryOfOrigin(),
-                Habitat = new Habitat(),
-                Species = new Species()
+                Name = "Berta",
+                Eats = "Kött",
+                Weight = 150,
+                CountryOfOrigin = uganda,
+                Habitat = träd,
+                Species = apa
             };
             Animal appappa = new Animal()
             {
-                Name = "Bertil", Eats = "Kött", Weight = 200,
-                CountryOfOrigin = new CountryOfOrigin(),
-                Habitat = new Habitat(),
-                Species = new Species()
+                Name = "Bertil",
+                Eats = "Kött",
+                Weight = 200,
+                CountryOfOrigin = uganda,
+                Habitat = träd,
+                Species = apa
             };
             Animal apbarn = new Animal()
             {
-                Name = "Svea", Eats = "Kött", Weight = 40,
-                CountryOfOrigin = new CountryOfOrigin(),
-                Habitat = new Habitat(),
-                Species = new Species()
+                Name = "Svea",
+                Eats = "Kött",
+                Weight = 40,
+                CountryOfOrigin = uganda,
+                Habitat = träd,
+                Species = apa
             };
 
             apbarn.Parents.Add(apmamma);
             apbarn.Parents.Add(appappa);
+            grisbarn.Parents.Add(apmamma);
+            grisbarn.Parents.Add(appappa);
 
             mark.Animals.Add(grisbarn);
 
@@ -72,13 +85,13 @@ namespace ZooApp.Datacontext
             uganda.Animals.Add(apmamma);
 
             ctx.Animals.Add(grisbarn);
-            
+
             ctx.Animals.Add(apbarn);
-            
+
             ctx.Animals.Add(apmamma);
-            
+
             ctx.Animals.Add(appappa);
-            
+
             ctx.Habitats.Add(mark);
             ctx.Habitats.Add(vatten);
             ctx.Habitats.Add(träd);

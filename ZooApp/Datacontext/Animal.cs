@@ -12,7 +12,6 @@ namespace ZooApp.Datacontext
         public Animal()
         {
             this.Parents = new HashSet<Animal>();
-            
         }
 
         public int AnimalId { get; set; }
@@ -26,11 +25,11 @@ namespace ZooApp.Datacontext
         public int CountryOfOriginId { get; set; }
         public int HabitatId { get; set; }
         public int SpeciesId { get; set; }
-
+        
         public virtual CountryOfOrigin CountryOfOrigin { get; set; }
         public virtual Habitat Habitat { get; set; }
         public virtual Species Species { get; set; }
-        
+
         public virtual ICollection<Animal> Parents { get; set; }
     }
 }
