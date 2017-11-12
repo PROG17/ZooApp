@@ -12,9 +12,12 @@ namespace ZooApp.ViewModels
         public string Name { get; set; }
         public string Eats { get; set; }
         public string CountryOfOrigin { get; set; }
-        public int Weight { get; set; }
+        public string Habitat { get; set; }
         public string Species { get; set; }
+        public int Weight { get; set; }
+        public int? Parent1Id { get; set; }
+        public int? Parent2Id { get; set; }
+       
         //public bool HasVetAppointment { get; set; }
-        
     }
 }

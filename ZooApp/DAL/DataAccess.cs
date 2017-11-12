@@ -16,32 +16,155 @@ namespace ZooApp.DAL
     class DataAccess
     {
 
-        public BindingList<AnimalModel> GetAnimalsFromDB(string habitat, string species, string eats)
+        public BindingList<AnimalModel> GetAnimalsFromDB(AnimalModel animals)
         {
-            BindingList<AnimalModel> filteredAnimals = new BindingList<AnimalModel>();
+            BindingList<AnimalModel> querriedAnimals = new BindingList<AnimalModel>();
+            
+            using (var db = new ZooContext())
+            {
+
+                var query = (from a in db.Animals
+                            where (string.IsNullOrEmpty(animals.Habitat) || a.Habitat.Name == animals.Habitat) &&
+                                   (string.IsNullOrEmpty(animals.Species) || a.Species.Name == animals.Species) &&
+                                   (string.IsNullOrEmpty(animals.Eats) || a.Eats == animals.Eats)
+                                    select new 
+                                    {
+                                          AnimalId = a.AnimalId,
+                                          Name = a.Name,
+                                          Weight = a.Weight,
+                                          Eats = a.Eats,
+                                          CountryOfOrigin = a.CountryOfOrigin.Name,
+                                          Species = a.Species.Name,
+                                          Habitat = a.Habitat.Name,
+                                          Parents = a.Parents
+                                      }).ToList();
+
+                foreach (var b in query)
+                {
+                    if (b.Parents.Count == 0)
+                    {
+                        querriedAnimals.Add(new AnimalModel
+                        {
+                            AnimalId = b.AnimalId,
+                            Name = b.Name,
+                            Weight = b.Weight,
+                            Eats = b.Eats,
+                            CountryOfOrigin = b.CountryOfOrigin,
+                            Species = b.Species,
+                            Habitat = b.Habitat,
+                            Parent1Id = null,
+                            Parent2Id = null
+                        });
+                    }
+                    if (b.Parents.Count == 1)
+                    {
+                        querriedAnimals.Add(new AnimalModel
+                        {
+                            AnimalId = b.AnimalId,
+                            Name = b.Name,
+                            Weight = b.Weight,
+                            Eats = b.Eats,
+                            CountryOfOrigin = b.CountryOfOrigin,
+                            Species = b.Species,
+                            Habitat = b.Habitat,
+                            Parent1Id = b.Parents.ElementAt(0).AnimalId,
+                            Parent2Id = null
+                        });
+                    }
+                    if (b.Parents.Count == 2)
+                    {
+                        querriedAnimals.Add(new AnimalModel
+                        {
+                            AnimalId = b.AnimalId,
+                            Name = b.Name,
+                            Weight = b.Weight,
+                            Eats = b.Eats,
+                            CountryOfOrigin = b.CountryOfOrigin,
+                            Species = b.Species,
+                            Habitat = b.Habitat,
+                            Parent1Id = b.Parents.ElementAt(0).AnimalId,
+                            Parent2Id = b.Parents.ElementAt(1).AnimalId
+                        });
+                    }
+                }
+
+             }
+
+            return querriedAnimals;
+        }
+        public BindingList<AnimalModel> GetAnimalFromDB(AnimalModel animal)
+        {
+            BindingList<AnimalModel> animalToBeChanged = new BindingList<AnimalModel>();
 
             using (var db = new ZooContext())
             {
 
-                var query = from animalitem in db.Animals
-                            where (string.IsNullOrEmpty(habitat) || animalitem.Habitat.Name == habitat) &&
-                                  (string.IsNullOrEmpty(species) || animalitem.Species.Name == species) &&
-                                  (string.IsNullOrEmpty(eats) || animalitem.Eats == eats)
-                            select new AnimalModel
+                var query = (from a in db.Animals
+                            where a.AnimalId == animal.AnimalId
+                            select new 
                             {
-                                AnimalId = animalitem.AnimalId,
-                                Name = animalitem.Name,
-                                Weight = animalitem.Weight,
-                                Eats = animalitem.Eats,
-                                CountryOfOrigin = animalitem.CountryOfOrigin.Name,
-                                Species = animalitem.Species.Name
-                            };
+                                AnimalId = a.AnimalId,
+                                Name = a.Name,
+                                Weight = a.Weight,
+                                Eats = a.Eats,
+                                Habitat = a.Habitat.Name,
+                                CountryOfOrigin = a.CountryOfOrigin.Name,
+                                Species = a.Species.Name,
+                                Parents = a.Parents
+                            }).ToList();
 
-                filteredAnimals = new BindingList<AnimalModel>(query.ToList());
+                foreach (var b in query)
+                {
+                    if (b.Parents.Count == 0)
+                    {
+                        animalToBeChanged.Add(new AnimalModel
+                        {
+                            AnimalId = b.AnimalId,
+                            Name = b.Name,
+                            Weight = b.Weight,
+                            Eats = b.Eats,
+                            CountryOfOrigin = b.CountryOfOrigin,
+                            Species = b.Species,
+                            Habitat = b.Habitat,
+                            Parent1Id = null,
+                            Parent2Id = null
+                        });
+                    }
+                    if (b.Parents.Count == 1)
+                    {
+                        animalToBeChanged.Add(new AnimalModel
+                        {
+                            AnimalId = b.AnimalId,
+                            Name = b.Name,
+                            Weight = b.Weight,
+                            Eats = b.Eats,
+                            CountryOfOrigin = b.CountryOfOrigin,
+                            Species = b.Species,
+                            Habitat = b.Habitat,
+                            Parent1Id = b.Parents.ElementAt(0).AnimalId,
+                            Parent2Id = null
+                        });
+                    }
+                    if (b.Parents.Count == 2)
+                    {
+                        animalToBeChanged.Add(new AnimalModel
+                        {
+                            AnimalId = b.AnimalId,
+                            Name = b.Name,
+                            Weight = b.Weight,
+                            Eats = b.Eats,
+                            CountryOfOrigin = b.CountryOfOrigin,
+                            Species = b.Species,
+                            Habitat = b.Habitat,
+                            Parent1Id = b.Parents.ElementAt(0).AnimalId,
+                            Parent2Id = b.Parents.ElementAt(1).AnimalId
+                        });
+                    }
+                }
 
             }
 
-            return filteredAnimals;
+            return animalToBeChanged;
         }
 
         public void DeleteAnimal(int selectedanimalid)
@@ -61,49 +184,66 @@ namespace ZooApp.DAL
                 }
                 animalToBeDeleted.Parents.Clear(); 
                 db.Animals.Remove(animalToBeDeleted);
-
                 db.SaveChanges();
                 
                 
 
                 
             }
-            // InsertAnimal
-            // UpdateAnimal
-
-            //GetCategories(), which will return information about all of the categories
-            //GetProducts(), which will return information about all of the products
-            //GetProductsByCategoryID(categoryID), which will return all products that belong to a specified category
-            //GetProductByProductID(productID), which will return information about a particular product
+            
         }
 
-        public void AddAnimal(NewAnimal newAnimal)
+        public void AddOrChangeAnimalInDB(AnimalModel newAnimal)
         {
             using (var db = new ZooContext())
             {
                 var country = db.CountryOfOrigins.First(x => x.Name == newAnimal.CountryOfOrigin);
                 var habitat = db.Habitats.First(x => x.Name == newAnimal.Habitat);
                 var species = db.Specieses.First(x => x.Name == newAnimal.Species);
-                var firstparent = db.Animals.First(x => x.AnimalId == newAnimal.Parent1Id);
-                var secondparent = db.Animals.First(x => x.AnimalId == newAnimal.Parent2Id);
+                var firstparent = db.Animals.FirstOrDefault(x => x.AnimalId == newAnimal.Parent1Id);
+                var secondparent = db.Animals.FirstOrDefault(x => x.AnimalId == newAnimal.Parent2Id);
+                var changedAnimal = db.Animals.FirstOrDefault(x => x.AnimalId == newAnimal.AnimalId);
 
-                Animal newAnimalinstance = new Animal()
+                if (!db.Animals.Any(x => x.AnimalId == newAnimal.AnimalId))
                 {
-                    Name = newAnimal.Name,
-                    Eats = newAnimal.Eats,
-                    Weight = newAnimal.Weight,
-                    CountryOfOrigin = country,
-                    Habitat = habitat,
-                    Species = species,
-                };
+                    Animal newAnimalinstance = new Animal()
+                    {
+                        Name = newAnimal.Name,
+                        Eats = newAnimal.Eats,
+                        Weight = newAnimal.Weight,
+                        CountryOfOrigin = country,
+                        Habitat = habitat,
+                        Species = species,
+                    };
+                    if (secondparent != null && firstparent != null)
+                    {
+                        newAnimalinstance.Parents.Add(firstparent);
+                        newAnimalinstance.Parents.Add(secondparent);
+                    }
+                    else if (firstparent == null)
+                    {
+                        newAnimalinstance.Parents.Add(secondparent);
+                    }
+                    else if (secondparent == null)
+                    {
+                        newAnimalinstance.Parents.Add(firstparent);
+                    }
+                    country.Animals.Add(newAnimalinstance);
+                    habitat.Animals.Add(newAnimalinstance);
+                    species.Animals.Add(newAnimalinstance);
 
-                newAnimalinstance.Parents.Add(firstparent);
-                newAnimalinstance.Parents.Add(secondparent);
-                country.Animals.Add(newAnimalinstance);
-                habitat.Animals.Add(newAnimalinstance);
-                species.Animals.Add(newAnimalinstance);
+                    db.Animals.Add(newAnimalinstance);
 
-                db.Animals.Add(newAnimalinstance);
+                }
+                else
+                {
+                    changedAnimal.CountryOfOrigin.Name = newAnimal.CountryOfOrigin;
+                    changedAnimal.Habitat.Name = newAnimal.Habitat;
+                    changedAnimal.Eats = newAnimal.Eats;
+                    changedAnimal.Species.Name = newAnimal.Species;
+                    changedAnimal.Weight = newAnimal.Weight;
+                    changedAnimal.Name = newAnimal.Name;
+                }
 
                 db.SaveChanges();
                 

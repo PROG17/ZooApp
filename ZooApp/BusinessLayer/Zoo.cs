@@ -11,21 +11,28 @@ namespace ZooApp.BusinessLayer
 {
     public class Zoo
     {
-        public BindingList<AnimalModel> GetAnimals(string habitat, string species, string eats)
+        public BindingList<AnimalModel> GetSearchedAnimals(AnimalModel animalData)
         {
             var dataAccess = new DataAccess();
 
-            return dataAccess.GetAnimalsFromDB(habitat, species, eats); 
+            return dataAccess.GetAnimalsFromDB(animalData); 
         }
+        public BindingList<AnimalModel> GetSelectedAnimal(AnimalModel animalData)
+        {
+            var dataAccess = new DataAccess();
+
+            return dataAccess.GetAnimalFromDB(animalData);
+        }
+
         public void DeleteSelectedAnimal(int selectedanimalid)
         {
             var dataAccess = new DataAccess();
             dataAccess.DeleteAnimal(selectedanimalid);
         }
-        public void AddNewAnimal(NewAnimal newAnimal)
+        public void AddOrChangeAnimal(AnimalModel newAnimal)
         {
             var dataAccess = new DataAccess();
-            dataAccess.AddAnimal(newAnimal);
+            dataAccess.AddOrChangeAnimalInDB(newAnimal);
         }
 
 

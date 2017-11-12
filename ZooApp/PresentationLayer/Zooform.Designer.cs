@@ -39,6 +39,7 @@
             this.BookButton = new System.Windows.Forms.Button();
             this.SearchButton = new System.Windows.Forms.Button();
             this.DeleteAnimalButton = new System.Windows.Forms.Button();
+            this.ChangeAnimalButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ZooGridViewSök)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,11 +47,12 @@
             // 
             this.ZooGridViewSök.AllowUserToAddRows = false;
             this.ZooGridViewSök.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ZooGridViewSök.Location = new System.Drawing.Point(54, 113);
+            this.ZooGridViewSök.Location = new System.Drawing.Point(36, 19);
+            this.ZooGridViewSök.Margin = new System.Windows.Forms.Padding(2);
             this.ZooGridViewSök.Name = "ZooGridViewSök";
             this.ZooGridViewSök.ReadOnly = true;
             this.ZooGridViewSök.RowTemplate.Height = 28;
-            this.ZooGridViewSök.Size = new System.Drawing.Size(604, 249);
+            this.ZooGridViewSök.Size = new System.Drawing.Size(606, 229);
             this.ZooGridViewSök.TabIndex = 0;
             // 
             // HabitatComboBox
@@ -60,26 +62,29 @@
             "Vatten",
             "Mark",
             "Träd"});
-            this.HabitatComboBox.Location = new System.Drawing.Point(680, 63);
+            this.HabitatComboBox.Location = new System.Drawing.Point(662, 41);
+            this.HabitatComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.HabitatComboBox.Name = "HabitatComboBox";
-            this.HabitatComboBox.Size = new System.Drawing.Size(121, 28);
+            this.HabitatComboBox.Size = new System.Drawing.Size(82, 21);
             this.HabitatComboBox.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(676, 29);
+            this.label1.Location = new System.Drawing.Point(660, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 20);
+            this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Bor i miljö";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(676, 128);
+            this.label2.Location = new System.Drawing.Point(660, 83);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 20);
+            this.label2.Size = new System.Drawing.Size(20, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Art";
             // 
@@ -92,17 +97,19 @@
             "Orm",
             "Fågel",
             "Gris"});
-            this.SpeciesComboBox.Location = new System.Drawing.Point(680, 157);
+            this.SpeciesComboBox.Location = new System.Drawing.Point(662, 102);
+            this.SpeciesComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.SpeciesComboBox.Name = "SpeciesComboBox";
-            this.SpeciesComboBox.Size = new System.Drawing.Size(121, 28);
+            this.SpeciesComboBox.Size = new System.Drawing.Size(82, 21);
             this.SpeciesComboBox.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(676, 234);
+            this.label3.Location = new System.Drawing.Point(660, 152);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 20);
+            this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Föda";
             // 
@@ -112,16 +119,18 @@
             this.EatsComboBox.Items.AddRange(new object[] {
             "Kött",
             "Växter"});
-            this.EatsComboBox.Location = new System.Drawing.Point(680, 270);
+            this.EatsComboBox.Location = new System.Drawing.Point(662, 175);
+            this.EatsComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.EatsComboBox.Name = "EatsComboBox";
-            this.EatsComboBox.Size = new System.Drawing.Size(121, 28);
+            this.EatsComboBox.Size = new System.Drawing.Size(82, 21);
             this.EatsComboBox.TabIndex = 6;
             // 
             // AddAnimalButton
             // 
-            this.AddAnimalButton.Location = new System.Drawing.Point(827, 38);
+            this.AddAnimalButton.Location = new System.Drawing.Point(760, 19);
+            this.AddAnimalButton.Margin = new System.Windows.Forms.Padding(2);
             this.AddAnimalButton.Name = "AddAnimalButton";
-            this.AddAnimalButton.Size = new System.Drawing.Size(123, 53);
+            this.AddAnimalButton.Size = new System.Drawing.Size(90, 40);
             this.AddAnimalButton.TabIndex = 7;
             this.AddAnimalButton.Text = "Lägg till djur";
             this.AddAnimalButton.UseVisualStyleBackColor = true;
@@ -129,18 +138,20 @@
             // 
             // BookButton
             // 
-            this.BookButton.Location = new System.Drawing.Point(827, 244);
+            this.BookButton.Location = new System.Drawing.Point(760, 200);
+            this.BookButton.Margin = new System.Windows.Forms.Padding(2);
             this.BookButton.Name = "BookButton";
-            this.BookButton.Size = new System.Drawing.Size(135, 54);
+            this.BookButton.Size = new System.Drawing.Size(90, 35);
             this.BookButton.TabIndex = 8;
             this.BookButton.Text = "Boka veterinärs besök";
             this.BookButton.UseVisualStyleBackColor = true;
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(680, 322);
+            this.SearchButton.Location = new System.Drawing.Point(662, 209);
+            this.SearchButton.Margin = new System.Windows.Forms.Padding(2);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(95, 40);
+            this.SearchButton.Size = new System.Drawing.Size(63, 26);
             this.SearchButton.TabIndex = 9;
             this.SearchButton.Text = "Sök";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -148,19 +159,31 @@
             // 
             // DeleteAnimalButton
             // 
-            this.DeleteAnimalButton.Location = new System.Drawing.Point(827, 128);
+            this.DeleteAnimalButton.Location = new System.Drawing.Point(760, 140);
+            this.DeleteAnimalButton.Margin = new System.Windows.Forms.Padding(2);
             this.DeleteAnimalButton.Name = "DeleteAnimalButton";
-            this.DeleteAnimalButton.Size = new System.Drawing.Size(123, 57);
+            this.DeleteAnimalButton.Size = new System.Drawing.Size(90, 37);
             this.DeleteAnimalButton.TabIndex = 12;
             this.DeleteAnimalButton.Text = "Ta bort djur";
             this.DeleteAnimalButton.UseVisualStyleBackColor = true;
             this.DeleteAnimalButton.Click += new System.EventHandler(this.DeleteAnimalButton_Click);
             // 
+            // ChangeAnimalButton
+            // 
+            this.ChangeAnimalButton.Location = new System.Drawing.Point(760, 72);
+            this.ChangeAnimalButton.Name = "ChangeAnimalButton";
+            this.ChangeAnimalButton.Size = new System.Drawing.Size(90, 38);
+            this.ChangeAnimalButton.TabIndex = 13;
+            this.ChangeAnimalButton.Text = "Ändra djur";
+            this.ChangeAnimalButton.UseVisualStyleBackColor = true;
+            this.ChangeAnimalButton.Click += new System.EventHandler(this.ChangeAnimalButton_Click);
+            // 
             // Zooform
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(972, 386);
+            this.ClientSize = new System.Drawing.Size(880, 306);
+            this.Controls.Add(this.ChangeAnimalButton);
             this.Controls.Add(this.DeleteAnimalButton);
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.BookButton);
@@ -172,6 +195,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.HabitatComboBox);
             this.Controls.Add(this.ZooGridViewSök);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Zooform";
             this.Text = "Sök djur";
             ((System.ComponentModel.ISupportInitialize)(this.ZooGridViewSök)).EndInit();
@@ -193,6 +217,7 @@
         private System.Windows.Forms.Button BookButton;
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.Button DeleteAnimalButton;
+        private System.Windows.Forms.Button ChangeAnimalButton;
     }
 }
 

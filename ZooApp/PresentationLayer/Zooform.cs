@@ -18,6 +18,7 @@ namespace ZooApp
         public Zooform()
         {
             InitializeComponent();
+            this.Size = new System.Drawing.Size(1000, 400);
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -26,7 +27,14 @@ namespace ZooApp
             var speciesSelection = SpeciesComboBox.GetItemText(SpeciesComboBox.SelectedItem);
             var eatsSelection = EatsComboBox.GetItemText(EatsComboBox.SelectedItem);
 
-            ZooGridViewSök.DataSource = EskilstunaZoo.GetAnimals(habitatSelection, speciesSelection, eatsSelection);
+            var animalsQuery = new AnimalModel{
+
+                Eats = EatsComboBox.GetItemText(EatsComboBox.SelectedItem),
+                Species = SpeciesComboBox.GetItemText(SpeciesComboBox.SelectedItem),
+                Habitat = HabitatComboBox.GetItemText(HabitatComboBox.SelectedItem)
+            };
+
+            ZooGridViewSök.DataSource = EskilstunaZoo.GetSearchedAnimals(animalsQuery);
             HabitatComboBox.SelectedIndex = -1;
             SpeciesComboBox.SelectedIndex = -1;
             EatsComboBox.SelectedIndex = -1;
@@ -42,15 +50,27 @@ namespace ZooApp
                 
                 EskilstunaZoo.DeleteSelectedAnimal((int)selectedAnimal);
             }
-            
+            ZooGridViewSök.DataSource = EskilstunaZoo.GetSearchedAnimals(new AnimalModel { Habitat = "", Eats = "", Species = "" });
+
         }
 
         private void AddAnimalButton_Click(object sender, EventArgs e)
         {
-            
             var addNewAnimalForm = new AddAnimalform(EskilstunaZoo);
             addNewAnimalForm.ShowDialog();
 
+        }
+
+        private void ChangeAnimalButton_Click(object sender, EventArgs e)
+        {
+            if (ZooGridViewSök.SelectedRows.Count == 1)
+            {
+                AnimalModel animalToBeChanged = new AnimalModel { AnimalId = (int)(ZooGridViewSök[0, ZooGridViewSök.CurrentCell.RowIndex].Value)};
+                var changeAnimalForm = new AddAnimalform(EskilstunaZoo, animalToBeChanged);
+                changeAnimalForm.ShowDialog();
+            }
+            
+            
         }
     }
 
