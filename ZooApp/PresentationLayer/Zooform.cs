@@ -24,14 +24,19 @@ namespace ZooApp
         private void SearchButton_Click(object sender, EventArgs e)
         {
             var habitatSelection = HabitatComboBox.GetItemText(HabitatComboBox.SelectedItem);
-            var speciesSelection = SpeciesComboBox.GetItemText(SpeciesComboBox.SelectedItem);
+            var speciesSelection = SpeciestextBox.Text;
+
+            if (SpeciesComboBox.SelectedIndex > -1)
+            {
+                speciesSelection = SpeciesComboBox.GetItemText(SpeciesComboBox.SelectedItem);
+            }
             var eatsSelection = EatsComboBox.GetItemText(EatsComboBox.SelectedItem);
 
             var animalsQuery = new AnimalModel{
 
-                Eats = EatsComboBox.GetItemText(EatsComboBox.SelectedItem),
-                Species = SpeciesComboBox.GetItemText(SpeciesComboBox.SelectedItem),
-                Habitat = HabitatComboBox.GetItemText(HabitatComboBox.SelectedItem)
+                Eats = eatsSelection,
+                Species = speciesSelection,
+                Habitat = habitatSelection
             };
 
             ZooGridViewSök.DataSource = EskilstunaZoo.GetSearchedAnimals(animalsQuery);

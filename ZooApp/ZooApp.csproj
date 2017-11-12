@@ -57,9 +57,14 @@
     <Compile Include="BusinessLayer\Zoo.cs" />
     <Compile Include="DAL\DataAccess.cs" />
     <Compile Include="Datacontext\Animal.cs" />
+    <Compile Include="Datacontext\Appointment.cs" />
     <Compile Include="Datacontext\CountryOfOrigin.cs" />
+    <Compile Include="Datacontext\Diagnose.cs" />
+    <Compile Include="Datacontext\DiagnoseMedicine.cs" />
+    <Compile Include="Datacontext\Medicine.cs" />
     <Compile Include="Datacontext\Species.cs" />
     <Compile Include="Datacontext\Habitat.cs" />
+    <Compile Include="Datacontext\Vet.cs" />
     <Compile Include="Datacontext\ZooContext.cs" />
     <Compile Include="Datacontext\ZooDBInitializer.cs" />
     <Compile Include="PresentationLayer\AddAnimalform.cs">
@@ -69,6 +74,12 @@
       <DependentUpon>AddAnimalform.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PresentationLayer\Appointmentform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\Appointmentform.Designer.cs">
+      <DependentUpon>Appointmentform.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AnimalModel.cs" />
     <Compile Include="PresentationLayer\Zooform.cs">
       <SubType>Form</SubType>
@@ -81,6 +92,9 @@
     <Compile Include="ViewModels\NewAnimal.cs" />
     <EmbeddedResource Include="PresentationLayer\AddAnimalform.resx">
       <DependentUpon>AddAnimalform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\Appointmentform.resx">
+      <DependentUpon>Appointmentform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\Zooform.resx">
       <DependentUpon>Zooform.cs</DependentUpon>

@@ -37,7 +37,19 @@ namespace ZooApp.Datacontext
 
             Species orm = new Species() { Name = "Orm" };
 
-            
+            Vet gunnar = new Vet() { VetName = "Gunnar" };
+            Vet karin = new Vet() { VetName = "Karin" };
+            Vet tyko = new Vet() { VetName = "Tyko" };
+
+            Medicine panodil = new Medicine() { Name = "Panodil" };
+            Medicine abinex = new Medicine() { Name = "Abinex" };
+            Medicine dalmeralin = new Medicine() { Name = "Dalmeralin" };
+            Medicine halothane = new Medicine() { Name = "Halothane" };
+            Medicine panacur = new Medicine() { Name = "Panacur" };
+
+            //Appointment tisdag = new Appointment() {DateTime = new DateTime };
+
+
             Animal grisbarn = new Animal()
             {
                 Name = "Greger",

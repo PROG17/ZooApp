@@ -40,6 +40,8 @@
             this.SearchButton = new System.Windows.Forms.Button();
             this.DeleteAnimalButton = new System.Windows.Forms.Button();
             this.ChangeAnimalButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.SpeciestextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ZooGridViewSök)).BeginInit();
             this.SuspendLayout();
             // 
@@ -148,10 +150,10 @@
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(662, 209);
+            this.SearchButton.Location = new System.Drawing.Point(760, 252);
             this.SearchButton.Margin = new System.Windows.Forms.Padding(2);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(63, 26);
+            this.SearchButton.Size = new System.Drawing.Size(90, 31);
             this.SearchButton.TabIndex = 9;
             this.SearchButton.Text = "Sök";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -178,11 +180,29 @@
             this.ChangeAnimalButton.UseVisualStyleBackColor = true;
             this.ChangeAnimalButton.Click += new System.EventHandler(this.ChangeAnimalButton_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(596, 268);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Artnamn";
+            // 
+            // SpeciestextBox
+            // 
+            this.SpeciestextBox.Location = new System.Drawing.Point(655, 261);
+            this.SpeciestextBox.Name = "SpeciestextBox";
+            this.SpeciestextBox.Size = new System.Drawing.Size(100, 20);
+            this.SpeciestextBox.TabIndex = 15;
+            // 
             // Zooform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(880, 306);
+            this.Controls.Add(this.SpeciestextBox);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.ChangeAnimalButton);
             this.Controls.Add(this.DeleteAnimalButton);
             this.Controls.Add(this.SearchButton);
@@ -218,6 +238,8 @@
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.Button DeleteAnimalButton;
         private System.Windows.Forms.Button ChangeAnimalButton;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox SpeciestextBox;
     }
 }
 

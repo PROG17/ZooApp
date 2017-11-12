@@ -23,7 +23,12 @@ namespace ZooApp
         public DbSet<CountryOfOrigin> CountryOfOrigins { get; set; }
         public DbSet<Habitat> Habitats { get; set; }
         public DbSet<Species> Specieses { get; set; }
-        
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Vet> Vets { get; set; }
+        public DbSet<Diagnose> Diagnoses { get; set; }
+        public DbSet<DiagnoseMedicine> DiagnoseMedicins { get; set; }
+        public DbSet<Medicine> Medicins { get; set; }
+
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
@@ -38,17 +43,47 @@ namespace ZooApp
             modelBuilder.Entity<Animal>()
                 .HasRequired<CountryOfOrigin>(s => s.CountryOfOrigin)
                 .WithMany(g => g.Animals)
-                .HasForeignKey<int>(s => s.CountryOfOriginId);
+                .HasForeignKey<int>(f => f.CountryOfOriginId);
 
             modelBuilder.Entity<Animal>()
                 .HasRequired<Habitat>(s => s.Habitat)
                 .WithMany(g => g.Animals)
-                .HasForeignKey<int>(s => s.HabitatId);
+                .HasForeignKey<int>(f => f.HabitatId);
 
             modelBuilder.Entity<Animal>()
                 .HasRequired<Species>(s => s.Species)
                 .WithMany(g => g.Animals)
-                .HasForeignKey<int>(s => s.SpeciesId);
+                .HasForeignKey<int>(f => f.SpeciesId);
+
+            modelBuilder.Entity<Animal>()
+                .HasMany(s => s.Appointments)
+                .WithOptional(g => g.Animal)
+                .HasForeignKey<int?>(f => f.AnimalId);
+
+            modelBuilder.Entity<Appointment>()
+                .HasRequired<Diagnose>(s => s.Diagnose)
+                .WithMany(g => g.Appointments)
+                .HasForeignKey<int>(f => f.DiagnoseId);
+
+            modelBuilder.Entity<Appointment>()
+                .HasRequired<Vet>(s => s.Vet)
+                .WithMany(g => g.Appointments)
+                .HasForeignKey<int>(f => f.VetId);
+
+            modelBuilder.Entity<DiagnoseMedicine>()
+                .HasOptional<Medicine>(s => s.Medicine)
+                .WithMany(g => g.DiagnoseMedicines)
+                .HasForeignKey<int?>(f => f.MedicineId);
+
+            modelBuilder.Entity<DiagnoseMedicine>()
+                .HasOptional<Diagnose>(s => s.Diagnose)
+                .WithMany(g => g.DiagnoseMedicines)
+                .HasForeignKey<int?>(f => f.DiagnoseId);
+
+
+
+
+
 
 
 

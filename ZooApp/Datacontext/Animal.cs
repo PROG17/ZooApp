@@ -31,5 +31,6 @@ namespace ZooApp.Datacontext
         public virtual Species Species { get; set; }
 
         public virtual ICollection<Animal> Parents { get; set; }
+        public virtual ICollection<Appointment> Appointments { get; set; }
     }
 }

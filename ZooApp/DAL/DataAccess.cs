@@ -25,7 +25,7 @@ namespace ZooApp.DAL
 
                 var query = (from a in db.Animals
                             where (string.IsNullOrEmpty(animals.Habitat) || a.Habitat.Name == animals.Habitat) &&
-                                   (string.IsNullOrEmpty(animals.Species) || a.Species.Name == animals.Species) &&
+                                   (string.IsNullOrEmpty(animals.Species) || a.Species.Name.Contains(animals.Species)) &&
                                    (string.IsNullOrEmpty(animals.Eats) || a.Eats == animals.Eats)
                                     select new 
                                     {
