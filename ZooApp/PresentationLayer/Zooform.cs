@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZooApp.PresentationLayer;
 using ZooApp.ViewModels;
 
 namespace ZooApp
@@ -76,6 +70,18 @@ namespace ZooApp
             }
             
             
+        }
+
+        private void BookButton_Click(object sender, EventArgs e)
+        {
+            if (ZooGridViewSök.SelectedRows.Count == 1)
+            {
+                AppointmentModel animalToBeBooked = new AppointmentModel { AnimalId = (int)(ZooGridViewSök[0, ZooGridViewSök.CurrentCell.RowIndex].Value) };
+                var addNewAppointmentForm = new Appointmentform(EskilstunaZoo, animalToBeBooked);
+                addNewAppointmentForm.ShowDialog();
+            }
+           
+
         }
     }
 

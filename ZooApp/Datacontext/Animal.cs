@@ -12,6 +12,7 @@ namespace ZooApp.Datacontext
         public Animal()
         {
             this.Parents = new HashSet<Animal>();
+            this.Appointments = new HashSet<Appointment>();
         }
 
         public int AnimalId { get; set; }

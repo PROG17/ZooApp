@@ -24,6 +24,13 @@ namespace ZooApp.BusinessLayer
             return dataAccess.GetAnimalFromDB(animalData);
         }
 
+        public BindingList<AppointmentModel> GetAnimalAppointments(AppointmentModel animalData)
+        {
+            var dataAccess = new DataAccess();
+
+            return dataAccess.GetAppointmentsFromDB(animalData);
+        }
+
         public void DeleteSelectedAnimal(int selectedanimalid)
         {
             var dataAccess = new DataAccess();

@@ -8,6 +8,11 @@ namespace ZooApp.Datacontext
 {
     public class Vet
     {
+        public Vet()
+        {
+            this.Appointments = new HashSet<Appointment>();
+        }
+
         public int VetId { get; set; }
         public string VetName { get; set; }
 

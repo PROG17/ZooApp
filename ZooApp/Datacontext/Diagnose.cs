@@ -8,6 +8,12 @@ namespace ZooApp.Datacontext
 {
     public class Diagnose
     {
+        public Diagnose()
+        {
+            this.Appointments = new HashSet<Appointment>();
+            this.DiagnoseMedicines = new HashSet<DiagnoseMedicine>();
+        }
+
         public int DiagnoseId { get; set; }
         public string Description { get; set; }
 

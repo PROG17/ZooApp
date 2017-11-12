@@ -92,6 +92,75 @@ namespace ZooApp.DAL
 
             return querriedAnimals;
         }
+        public BindingList<AppointmentModel> GetAppointmentsFromDB(AppointmentModel animal)
+        {
+            BindingList<AppointmentModel> querriedAppointments = new BindingList<AppointmentModel>();
+
+            using (var db = new ZooContext())
+            {
+
+                var query = from a in db.Appointments
+                             where (a.AnimalId == animal.AnimalId)                                   
+                             select new AppointmentModel
+                             {
+                                 VetName = a.Vet.VetName,
+                                 BookedDateTime = a.DateTime
+                             };
+
+                //foreach (var b in query)
+                //{
+                //    if (b.Parents.Count == 0)
+                //    {
+                //        querriedAnimals.Add(new AnimalModel
+                //        {
+                //            AnimalId = b.AnimalId,
+                //            Name = b.Name,
+                //            Weight = b.Weight,
+                //            Eats = b.Eats,
+                //            CountryOfOrigin = b.CountryOfOrigin,
+                //            Species = b.Species,
+                //            Habitat = b.Habitat,
+                //            Parent1Id = null,
+                //            Parent2Id = null
+                //        });
+                //    }
+                //    if (b.Parents.Count == 1)
+                //    {
+                //        querriedAnimals.Add(new AnimalModel
+                //        {
+                //            AnimalId = b.AnimalId,
+                //            Name = b.Name,
+                //            Weight = b.Weight,
+                //            Eats = b.Eats,
+                //            CountryOfOrigin = b.CountryOfOrigin,
+                //            Species = b.Species,
+                //            Habitat = b.Habitat,
+                //            Parent1Id = b.Parents.ElementAt(0).AnimalId,
+                //            Parent2Id = null
+                //        });
+                //    }
+                //    if (b.Parents.Count == 2)
+                //    {
+                //        querriedAnimals.Add(new AnimalModel
+                //        {
+                //            AnimalId = b.AnimalId,
+                //            Name = b.Name,
+                //            Weight = b.Weight,
+                //            Eats = b.Eats,
+                //            CountryOfOrigin = b.CountryOfOrigin,
+                //            Species = b.Species,
+                //            Habitat = b.Habitat,
+                //            Parent1Id = b.Parents.ElementAt(0).AnimalId,
+                //            Parent2Id = b.Parents.ElementAt(1).AnimalId
+                //        });
+                //    }
+                //}
+                querriedAppointments = new BindingList<AppointmentModel>(query.ToList());
+
+            }
+
+            return querriedAppointments;
+        }
         public BindingList<AnimalModel> GetAnimalFromDB(AnimalModel animal)
         {
             BindingList<AnimalModel> animalToBeChanged = new BindingList<AnimalModel>();
@@ -248,6 +317,7 @@ namespace ZooApp.DAL
                 db.SaveChanges();
                 
             }
+        
         }
     }
 }

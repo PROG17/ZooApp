@@ -147,6 +147,7 @@
             this.BookButton.TabIndex = 8;
             this.BookButton.Text = "Boka veterinärs besök";
             this.BookButton.UseVisualStyleBackColor = true;
+            this.BookButton.Click += new System.EventHandler(this.BookButton_Click);
             // 
             // SearchButton
             // 

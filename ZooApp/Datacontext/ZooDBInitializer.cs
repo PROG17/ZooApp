@@ -20,14 +20,14 @@ namespace ZooApp.Datacontext
 
             CountryOfOrigin australien = new CountryOfOrigin() { Name = "Australien" };
 
-            
-            Habitat mark = new Habitat() {Name = "Mark"};
+
+            Habitat mark = new Habitat() { Name = "Mark" };
 
             Habitat vatten = new Habitat() { Name = "Vatten" };
 
             Habitat träd = new Habitat() { Name = "Träd" };
 
-            Species gris = new Species(){Name = "Gris"};
+            Species gris = new Species() { Name = "Gris" };
 
             Species apa = new Species() { Name = "Apa" };
 
@@ -47,7 +47,11 @@ namespace ZooApp.Datacontext
             Medicine halothane = new Medicine() { Name = "Halothane" };
             Medicine panacur = new Medicine() { Name = "Panacur" };
 
-            //Appointment tisdag = new Appointment() {DateTime = new DateTime };
+            Appointment tisdag = new Appointment() { DateTime = new DateTime(2017, 11, 25, 13, 0, 0) };
+
+            Diagnose huvudvärk = new Diagnose() {Description = "Huvudvärk"};
+
+            DiagnoseMedicine diagnosmedicinkoppling = new DiagnoseMedicine() { Diagnose = huvudvärk, Medicine = panacur };
 
 
             Animal grisbarn = new Animal()
@@ -90,6 +94,23 @@ namespace ZooApp.Datacontext
                 Species = apa
             };
 
+            tisdag.Animal = grisbarn;
+            tisdag.Diagnose = huvudvärk;
+            tisdag.Vet = tyko;
+
+            tyko.Appointments.Add(tisdag);
+            grisbarn.Appointments.Add(tisdag);
+
+            huvudvärk.Appointments.Add(tisdag);
+            huvudvärk.DiagnoseMedicines.Add(diagnosmedicinkoppling);
+
+            diagnosmedicinkoppling.Diagnose = huvudvärk;
+            diagnosmedicinkoppling.Medicine = panacur;
+
+            panacur.DiagnoseMedicines.Add(diagnosmedicinkoppling);
+
+
+
             apbarn.Parents.Add(apmamma);
             apbarn.Parents.Add(appappa);
             grisbarn.Parents.Add(apmamma);
@@ -129,8 +150,19 @@ namespace ZooApp.Datacontext
             ctx.CountryOfOrigins.Add(uganda);
             ctx.CountryOfOrigins.Add(thailand);
             ctx.CountryOfOrigins.Add(australien);
-            
 
+            ctx.Appointments.Add(tisdag);
+            ctx.Vets.Add(tyko);
+            ctx.Vets.Add(karin);
+            ctx.Vets.Add(gunnar);
+
+            ctx.Diagnoses.Add(huvudvärk);
+            ctx.DiagnoseMedicins.Add(diagnosmedicinkoppling);
+            ctx.Medicins.Add(panacur);
+            ctx.Medicins.Add(panodil);
+            ctx.Medicins.Add(abinex);
+            ctx.Medicins.Add(dalmeralin);
+            ctx.Medicins.Add(halothane);
 
             base.Seed(ctx);
         }
