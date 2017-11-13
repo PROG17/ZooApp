@@ -57,13 +57,13 @@ namespace ZooApp
 
             modelBuilder.Entity<Animal>()
                 .HasMany(s => s.Appointments)
-                .WithOptional(g => g.Animal)
-                .HasForeignKey<int?>(f => f.AnimalId);
+                .WithRequired(g => g.Animal)
+                .HasForeignKey<int>(f => f.AnimalId);
 
             modelBuilder.Entity<Appointment>()
-                .HasRequired<Diagnose>(s => s.Diagnose)
+                .HasOptional<Diagnose>(s => s.Diagnose)
                 .WithMany(g => g.Appointments)
-                .HasForeignKey<int>(f => f.DiagnoseId);
+                .HasForeignKey<int?>(f => f.DiagnoseId);
 
             modelBuilder.Entity<Appointment>()
                 .HasRequired<Vet>(s => s.Vet)

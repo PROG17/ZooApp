@@ -15,20 +15,32 @@ namespace ZooApp.BusinessLayer
         {
             var dataAccess = new DataAccess();
 
-            return dataAccess.GetAnimalsFromDB(animalData); 
+            return dataAccess.GetAnimalsFromDb(animalData); 
         }
         public BindingList<AnimalModel> GetSelectedAnimal(AnimalModel animalData)
         {
             var dataAccess = new DataAccess();
 
-            return dataAccess.GetAnimalFromDB(animalData);
+            return dataAccess.GetAnimalFromDb(animalData);
         }
 
         public BindingList<AppointmentModel> GetAnimalAppointments(AppointmentModel animalData)
         {
             var dataAccess = new DataAccess();
 
-            return dataAccess.GetAppointmentsFromDB(animalData);
+            return dataAccess.GetAppointmentsFromDb(animalData);
+        }
+        public BindingList<Vetmodel> GetAvailableVets(AppointmentModel animalData)
+        {
+            var dataAccess = new DataAccess();
+
+            return dataAccess.GetVetsFromDb(animalData);
+        }
+        public BindingList<MedicinModel> GetAvailableMedicines(AppointmentModel appointmentData)
+        {
+            var dataAccess = new DataAccess();
+
+            return dataAccess.GetMedicinsFromDb(appointmentData);
         }
 
         public void DeleteSelectedAnimal(int selectedanimalid)
@@ -39,10 +51,23 @@ namespace ZooApp.BusinessLayer
         public void AddOrChangeAnimal(AnimalModel newAnimal)
         {
             var dataAccess = new DataAccess();
-            dataAccess.AddOrChangeAnimalInDB(newAnimal);
+            dataAccess.AddOrChangeAnimalInDb(newAnimal);
         }
+        public void BookAppointment(AppointmentModel newAppointment)
+        {
+            var dataAccess = new DataAccess();
+            dataAccess.AddBookingInDb(newAppointment);
+        }
+        public void AddDiagnose(int appointmentId, string desc)
+        {
+            var dataAccess = new DataAccess();
+            dataAccess.AddDiagnoseInDb(appointmentId, desc);
+        }
+        public void AddMedicines(int medicineId, int appointmentId)
+        {
+            var dataAccess = new DataAccess();
 
-
-
+            dataAccess.AddMedicineInDb(medicineId, appointmentId);
+        }
     }
 }

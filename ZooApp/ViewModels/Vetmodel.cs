@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ZooApp.ViewModels
 {
-    class DiagnosModel
+    public class Vetmodel
     {
+        public int VetId { get; set; }
+        public string VetName { get; set; }   
     }
 }

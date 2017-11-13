@@ -90,9 +90,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AppointmentModel.cs" />
-    <Compile Include="ViewModels\DiagnosModel.cs" />
     <Compile Include="ViewModels\MedicinModel.cs" />
-    <Compile Include="ViewModels\VetsModel.cs" />
+    <Compile Include="ViewModels\Vetmodel.cs" />
     <EmbeddedResource Include="PresentationLayer\AddAnimalform.resx">
       <DependentUpon>AddAnimalform.cs</DependentUpon>
     </EmbeddedResource>

@@ -10,7 +10,14 @@ namespace ZooApp.ViewModels
     {
 
         public int AnimalId { get; set; }
+        public int AppointmentId { get; set; }
         public string VetName { get; set; }
         public DateTime BookedDateTime { get; set; }
+
+        public string Diagnose { get; set; }
+
+        public int VetId { get; set; }
+        //public List<MedicinModel> MedicinesForDiagnose { get; set; }
+
     }
 }

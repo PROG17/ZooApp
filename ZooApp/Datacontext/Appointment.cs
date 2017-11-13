@@ -9,9 +9,9 @@ namespace ZooApp.Datacontext
     public class Appointment
     {
         public int AppointmentId { get; set; }
-        public int? AnimalId { get; set; }
+        public int AnimalId { get; set; }
         public int VetId { get; set; }
-        public int DiagnoseId { get; set; }
+        public int? DiagnoseId { get; set; }
 
         public virtual Vet Vet { get; set; }
         public virtual Animal Animal { get; set; }
