@@ -56,7 +56,12 @@ namespace ZooApp.BusinessLayer
         public void BookAppointment(AppointmentModel newAppointment)
         {
             var dataAccess = new DataAccess();
-            dataAccess.AddBookingInDb(newAppointment);
+            dataAccess.AddAppointmentInDb(newAppointment);
+        }
+        public void RemoveAppointment(int appointmentId)
+        {
+            var dataAccess = new DataAccess();
+            dataAccess.RemoveAppointmentInDb(appointmentId);
         }
         public void AddDiagnose(int appointmentId, string desc)
         {
@@ -68,6 +73,12 @@ namespace ZooApp.BusinessLayer
             var dataAccess = new DataAccess();
 
             dataAccess.AddMedicineInDb(medicineId, appointmentId);
+        }
+        public BindingList<MedicinModel> GetDiagnosedMedicines(int appointmentId)
+        {
+            var dataAccess = new DataAccess();
+
+            return dataAccess.GetDiagnosedMedicinesFromDb(appointmentId);
         }
     }
 }

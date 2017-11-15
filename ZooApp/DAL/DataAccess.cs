@@ -2,7 +2,9 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using ZooApp.Datacontext;
 using ZooApp.ViewModels;
 
@@ -119,8 +121,7 @@ namespace ZooApp.DAL
 
             using (var db = new ZooContext())
             {
-                //var appointmentdiagnose = db.Diagnoses.FirstOrDefault(x => x.Appointments.FirstOrDefault(y => y.AppointmentId == animal.AppointmentId)); 
-                    //.Local.First(x => x.AnimalId == selectedanimalid);
+                
 
                 var query = from a in db.Appointments
                              where (a.AnimalId == animal.AnimalId)                                   
@@ -299,7 +300,7 @@ namespace ZooApp.DAL
             }
         
         }
-        public void AddBookingInDb(AppointmentModel newAppointment)
+        public void AddAppointmentInDb(AppointmentModel newAppointment)
         {
             using (var db = new ZooContext())
             {
@@ -328,41 +329,53 @@ namespace ZooApp.DAL
             }
 
         }
+        public void RemoveAppointmentInDb(int currentAppointmentId)
+        {
+            using (var db = new ZooContext())
+            {
+
+                var currentAppointment = db.Appointments.First(x => x.AppointmentId == currentAppointmentId);
+                var appointmentVet = db.Vets.First(x => x.Appointments.Any(y => y.AppointmentId == currentAppointmentId));
+                if (!db.Diagnoses.Any(x => x.Appointments.Any(y => y.AppointmentId == currentAppointmentId)))
+                {
+                    appointmentVet.Appointments.Remove(currentAppointment);
+                    db.Appointments.Remove(currentAppointment);
+                    db.SaveChanges();
+                }
+                
+
+            }
+
+        }
         public void AddDiagnoseInDb(int appointmentId, string desc)
         {
             using (var db = new ZooContext())
             {
 
                 var appointment = db.Appointments.First(x => x.AppointmentId == appointmentId);
-                
-                if (db.Diagnoses.Any(x => x.Description == desc))
+                if (appointment.Diagnose == null)
                 {
-                    var appointmentdiagnose = new Diagnose();
-                    appointmentdiagnose = db.Diagnoses.First(x => x.Description == desc);
-                    appointmentdiagnose.Appointments.Add(appointment);
-                }
-                else
-                {
-                    Diagnose newDiag = new Diagnose()
+
+                    if (db.Diagnoses.Any(x => x.Description == desc))
                     {
-                        Description = desc
+                        var appointmentdiagnose = new Diagnose();
+                        appointmentdiagnose = db.Diagnoses.First(x => x.Description == desc);
+                        appointmentdiagnose.Appointments.Add(appointment);
+                    }
+                    else
+                    {
+                        Diagnose newDiag = new Diagnose()
+                        {
+                            Description = desc
 
-                    };
-                    newDiag.Appointments.Add(appointment);
-                    appointment.Diagnose = newDiag;
+                        };
+                        newDiag.Appointments.Add(appointment);
+                        appointment.Diagnose = newDiag;
+                    }
 
+                    db.SaveChanges();
                 }
-                
-
-            
-
-                //appointmentAnimal.Appointments.Add(newApp);
-                //appointmentVet.Appointments.Add(newApp);
-
-                //db.Appointments.Add(newApp);
-
-
-                db.SaveChanges();
+             
 
             }
 
@@ -395,6 +408,42 @@ namespace ZooApp.DAL
                 
 
             }
+
+        }
+        public BindingList<MedicinModel> GetDiagnosedMedicinesFromDb(int appointmentId)
+        {
+
+            BindingList<MedicinModel> querriedDiagMedicines = new BindingList<MedicinModel>();
+
+            using (var db = new ZooContext())
+            {
+                var currentAppointment = db.Appointments.Any(x => x.AppointmentId == appointmentId);
+                
+                if (currentAppointment)
+                {
+                    if (db.Diagnoses.Any(x => x.Appointments.Any(y => y.AppointmentId == appointmentId)))
+                    {
+                        var currentDiagnose = db.Diagnoses.FirstOrDefault(x =>
+                            x.Appointments.Any(y => y.AppointmentId == appointmentId));
+                        if (db.DiagnoseMedicins.Any(x => x.DiagnoseId == currentDiagnose.DiagnoseId))
+                        {
+                            var query = from d in db.DiagnoseMedicins
+                                where d.DiagnoseId == currentDiagnose.DiagnoseId
+                                select new MedicinModel()
+                                {
+
+                                    Name = d.Medicine.Name
+                                };
+                            return querriedDiagMedicines = new BindingList<MedicinModel>(query.ToList());
+                        }
+                        else return null;
+                    }
+                    else return null;
+                }
+                else return null;
+            }
+
+            
 
         }
     }
